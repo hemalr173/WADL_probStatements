@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PICT</title>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  </head>
+
+  <body>
+    <div data-role="page" id="home">
+      <div data-role="header">
+        <h1>Pune Institute of Computer Technology</h1>
+      </div>
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Department</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div role="main" class="ui-content">
+        <h3>WELCOME TO PICT PUNE'S PORTAL.</h3>
+      </div>
+
+      <div
+        id="swipe"
+        data-role="content"
+        style="width: fit-content; height: 300px; background-color: aquamarine"
+      >
+        <img
+          id="box-img"
+          src="default.png"
+          alt="Image"
+          style="max-width: 100%; max-height: 100%"
+        />
+      </div>
+
+      <a href="#" id="changeimage-left" class="ui-btn">Previous image</a>
+      <a href="#" id="changeimage-right" class="ui-btn">Next image</a>
+
+      <section>
+        <h4>Department</h4>
+
+        <ul data-role="listview" data-inset="true">
+          <li><a href="#" id="cs">CS</a></li>
+          <li><a href="#" id="it">IT</a></li>
+          <li><a href="#" id="entc">Entc</a></li>
+        </ul>
+        <div id="departmentInfo" data-role="content"></div>
+
+        <h1>Vision</h1>
+      </section>
+      <footer data-role="footer">
+        <h3>Quick Acess</h3>
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Department</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+
+    <script>
+      var images = ["../7/asga.jpg", "../7/rabit.jpg", "../7/beet.jpg"];
+      var current = 0;
+      $("#changeimage-left").on("click", function () {
+        change("left");
+      });
+
+      $("#changeimage-right").on("click", function () {
+        change("right");
+      });
+
+      function change(direction) {
+        if (direction === "left") {
+          // current=(current-1+images.length)%images.length;
+          current = current - 1;
+        } else {
+          // current=(current+1)%images.length;
+          current = current + 1;
+        }
+        $("#box-img").attr("src", images[current]);
+      }
+
+      $("#cs").on("click", function () {
+        showdept(
+          "Computer Science Department",
+          "CS department information goes here."
+        );
+      });
+      $("#it").on("click", function () {
+        showdept(
+          "Information Technology Department",
+          "IT department information goes here."
+        );
+      });
+      $("#entc").on("click", function () {
+        showdept(
+          "Electronics and Telecommunication Department",
+          "ENTC department information goes here."
+        );
+      });
+
+      function showdept(title, content) {
+        $("#departmentInfo").html(
+          "<h3>" + title + " </h3><p>" + content + "</p>"
+        );
+      }
+    </script>
+  </body>
+</html>
